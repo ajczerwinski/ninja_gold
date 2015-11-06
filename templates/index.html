@@ -16,7 +16,7 @@
 			<form action="/process_money" method="post">
 				<h3>Farm</h3>
 				<p>(earns 10-20 gold)</p>
-				<input type="hidden" name="farm" value="Farm" />
+				<input type="hidden" name="building" value="Farm" />
 				<input type="submit" value="Find Gold!" />
 			</form>
 		</div>
@@ -24,7 +24,7 @@
 			<form action="/process_money" method="post">
 				<h3>Cave</h3>
 				<p>(earns 5-10 gold)</p>
-				<input type="hidden" name="cave" value="Cave" />
+				<input type="hidden" name="building" value="Cave" />
 				<input type="submit" value="Find Gold!" />
 			</form>
 		</div>
@@ -32,7 +32,7 @@
 			<form action="/process_money" method="post">
 				<h3>House</h3>
 				<p>(earns 2-5 gold)</p>
-				<input type="hidden" name="house" value="House" />
+				<input type="hidden" name="building" value="House" />
 				<input type="submit" value="Find Gold!" />
 			</form>
 		</div>
@@ -40,10 +40,15 @@
 			<form action="/process_money" method="post">
 				<h3>Casino</h3>
 				<p>(earns/takes 0-50 gold)</p>
-				<input type="hidden" name="casino" value="Casino" />
+				<input type="hidden" name="building" value="Casino" />
 				<input type="submit" value="Find Gold!" />
 			</form>
 		</div>
+		<p>Activities:</p>
+		<textarea rows="10" cols="50" name="activities" id="activities_box"></textarea>
+		{% if request.form["building"] == "Farm" %}
+		<p>Earned {{ session['gold'] }} gold from the farm! {{ time_stamp }}</p>
+		{% endif %}
 	</div>
 </body>
 </html>
