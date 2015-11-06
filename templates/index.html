@@ -45,10 +45,14 @@
 			</form>
 		</div>
 		<p>Activities:</p>
-		<textarea rows="10" cols="50" name="activities" id="activities_box"></textarea>
-		{% if request.form["building"] == "Farm" %}
-		<p>Earned {{ session['gold'] }} gold from the farm! {{ time_stamp }}</p>
-		{% endif %}
+		<textarea rows="10" cols="50" name="activities" id="activities_box">
+		
+	Earned {{ output }} gold from the {{ activity_log }} {{ time_stamp }}
+	{% for output in session['message']%}
+	{{ output }}
+	{% endfor %}
+		
+		</textarea>
 	</div>
 </body>
 </html>
