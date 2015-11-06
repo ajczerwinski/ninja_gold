@@ -11,5 +11,8 @@ def index():
 	return render_template("index.html")
 @app.route('/process_money')
 def process_money():
-	session['gold'] += 1
+	if session['name'] == xyz:
+		# Add/Subtract the right thing
+		return redirect('/')
+
 app.run(debug=True)
