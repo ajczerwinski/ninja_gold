@@ -27,16 +27,33 @@ def process_money():
 	elif request.form["building"] == "Cave":
 		session['cave_gold'] = random.randrange(5, 11)
 		session['gold'] += session['cave_gold']
+		output = "Earned %d gold from the cave! %s" %(session['cave_gold'], time)
+		session['message'].append(output)
 		session['building'] = "Cave"
 		return redirect('/')
 	elif request.form["building"] == "House":
 		session['house_gold'] = random.randrange(2, 6)
 		session['gold'] += session['house_gold']
+		output = "Earned %d gold from the house! %s" %(session['house_gold'], time)
+		session['message'].append(output)
 		session['building'] = "House"
 		return redirect('/')
 	elif request.form["building"] == "Casino":
-		session['casino_gold'] = random.randrange(-50, 51)
-		session['gold'] += session['casino_gold']
+		session['ladyluck'] = random.randrange(1, 101)
+		session['casino_gold'] = random.randrange(0, 51)
+		if session['ladyluck'] > 50:
+			session['gold'] += session['casino_gold']
+			output = "Earned %d gold from the casino! %s" %(session['casino_gold'], time)
+			session['message'].append(output)
+
+		else:
+			session['gold'] -= session['casino_gold']
+			output = "Entered a casino and lost %d gold...Ouch! %s" %(session['casino_gold'], time)
+			session['message'].append(output)
+
 		session['building'] = "Casino"
+		# Un-comment the session.clear() line below to alter the function of the casino 'find gold'
+		# button to clear the session. Leave commented for regular game
+		# session.clear()
 		return redirect('/')
 app.run(debug=True)

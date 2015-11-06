@@ -10,8 +10,10 @@
 </head>
 <body>
 	<div id="wrapper">
-		<h1>Hi</h1>
-		<p>Your Gold {{ session['gold'] }}</p>
+		<p>Your Gold:</p>
+		<div  id="top_box">
+			{{ session['gold'] }}
+		</div>
 		<div class="box" id="farm">
 			<form action="/process_money" method="post">
 				<h3>Farm</h3>
@@ -46,8 +48,7 @@
 		</div>
 		<p>Activities:</p>
 		<textarea rows="10" cols="50" name="activities" id="activities_box">
-		
-	Earned {{ output }} gold from the {{ activity_log }} {{ time_stamp }}
+
 	{% for output in session['message']%}
 	{{ output }}
 	{% endfor %}
